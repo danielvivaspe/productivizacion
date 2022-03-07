@@ -45,7 +45,7 @@ def make_predictions2(modelo_arima, n_periods=2):
 
 
 def get_dates(periods):
-    last_date = datetime.strptime('2020-12-31 23:00', '%Y-%m-%d %H:%M')
+    last_date = datetime.strptime('2019-12-31 20:00', '%Y-%m-%d %H:%M')
     min_diff = 240  # 4 hours
     dates = []
 
@@ -61,7 +61,12 @@ def make_graph(predictions, periods):
     x = get_dates(periods)
     y = predictions
 
-    fig = px.line(x=x, y=y, title='Particles evolution')
+    fig = px.line(
+        x=x,
+        y=y,
+        title='Concentración de particulas NO2 en atmósfera',
+        labels={'y' : 'Concentración NO2', 'x': 'Hora'}
+    )
 
     return to_html(fig, include_plotlyjs=False, include_mathjax=False, full_html=False)
 
